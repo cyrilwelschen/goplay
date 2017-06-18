@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 
 import subprocess
-#import fileinput
 import os
 
 proc = subprocess.Popen(["pwd"], stdout=subprocess.PIPE, shell=True)
@@ -20,10 +19,13 @@ with open(temp, 'r') as in_file, open(old_path, 'w') as out_file:
     for line in in_file:
         if "alias goplay" in line:
             print("Changing alias\n\t"+line)
-            new_line = 'alias goplay="cd '+current_path_new+'"'
+            new_line = 'alias goplay="cd '+current_path_new+'"\n'
             print("to...\n\t"+new_line)
-            out_file.write(line)
+            out_file.write(new_line)
         else:
             out_file.write(line)
 
 os.system("rm "+temp)
+
+#proc2 = subprocess.Popen(["source", old_path], shell=True)
+#os.system("source "+old_path)
